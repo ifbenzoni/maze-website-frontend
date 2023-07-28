@@ -1,0 +1,36 @@
+.empty-square {
+    height: 30px;
+    width: 30px;
+    background-color: #ffffff;
+}
+
+.wall-square {
+    height: 30px;
+    width: 30px;
+    background-color: #000000;
+}
+
+.unvisited-square {
+    height: 30px;
+    width: 30px;
+    background-color: red;
+}
+
+.selected-square {
+    height: 30px;
+    width: 30px;
+    background-color: green;
+}
+
+.end-square {
+    height: 30px;
+    width: 30px;
+    background-color: green;
+}
+
+.end-circle {
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    clip-path: circle(20%);
+}
