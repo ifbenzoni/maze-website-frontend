@@ -1,0 +1,20 @@
+<div class='content'>
+    <h1>{{ title }}</h1>
+</div>
+
+<div class='content'>
+    <Label>Select Generation Type:</Label>
+    <select name='generation methods' id='generation methods' [(ngModel)]='generationType'>
+        <option value='dfs'>Depth First Search</option>
+        <option value='recursive division'>Recursive Division</option>
+    </select>
+    <button (click)='setMaze(generationType)'>Generate</button>
+</div>
+
+<main class='content'>
+    <app-maze-visual [mazeArray]=generatedSteps[currentStep] [interactive] = false></app-maze-visual>
+</main>
+
+<nav>
+    <a routerLink='/'>Home</a>
+</nav>

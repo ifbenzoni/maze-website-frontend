@@ -1,0 +1,42 @@
+<div style='display: flex;' class='topStyle'>
+  <button style='margin-left: auto;' onclick="document.getElementById('loginForm').style.display='block'">
+    Log In
+  </button>
+</div>
+
+<div id='loginForm' class='modal'>
+  <form class='modal-content'>
+    <label><b>Username</b></label>
+    <input type='text' placeholder='Enter Username' [(ngModel)]='inputUsername' [ngModelOptions]='{standalone: true}' required>
+  
+    <label><b>Password</b></label>
+    <input type='password' placeholder='Enter Password' [(ngModel)]='inputPassword' [ngModelOptions]='{standalone: true}' required>
+
+    <button (click)='login(inputUsername, inputPassword)'>Log in</button>
+  </form>
+</div>
+
+<div class='content'>
+  <h1>{{ title }}</h1>
+</div>
+
+<div class='content'>
+  <label *ngIf='loggedIn == false'>
+    logged out
+  </label>
+  <label *ngIf='loggedIn == true'>
+    logged in
+  </label>
+  <label *ngIf='details != null'>
+    username: {{details[0]}}
+  </label>
+</div>
+
+<nav class='content'>
+  <ul>
+    <li><a routerLink='/demo'>Demo</a></li>
+    <li><a routerLink='/solve'>Solve</a></li>
+    <li><a routerLink='/saves'>Saves</a></li>
+    <li *ngIf="details != null && details[1] == 'ADMIN'"><a routerLink='/admin'>Admin Page</a></li>
+  </ul>
+</nav>
