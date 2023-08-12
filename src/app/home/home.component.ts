@@ -35,12 +35,12 @@ export class HomeComponent {
       next: (output: string) => {
         localStorage.setItem('userInfoJwt', output);
         this.loggedIn = true;
+        this.getUserDetails();
       },
       error: (error: HttpErrorResponse) => {
         alert(error.message);
       }
     })
-    this.getUserDetails();
   }
 
   public getUserDetails(): void {
