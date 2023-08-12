@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "maze-website",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

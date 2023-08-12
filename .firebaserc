@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "maze-website-frontend": {
+      "hosting": {
+        "maze-website": [
+          "maze-website-frontend"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "maze-website-frontend"
+  }
+}
