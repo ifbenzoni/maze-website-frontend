@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LoginService } from '../login.service';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -13,7 +13,7 @@ export class AdminPageComponent {
 
   newUserDetails: string[] = [];
 
-  constructor(private loginService: LoginService) {}
+  constructor(private accountService: AccountService) {}
 
   public ngOnInit(): void {
     let detailsString: string | null = localStorage.getItem('details');
@@ -25,7 +25,7 @@ export class AdminPageComponent {
   public addUser(username: string, password: string): void {
     const jwt = localStorage.getItem('userInfoJwt');
     //finish this and below
-    this.loginService.addUser(jwt, JSON.stringify({username: username, password: password}));
+    this.accountService.addUser(jwt, JSON.stringify({username: username, password: password}));
   }
 
   public getUsers(): void {

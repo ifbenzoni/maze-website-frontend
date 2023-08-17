@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 
-import { LoginService } from '../login.service';
+import { AccountService } from '../account.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -18,7 +18,7 @@ export class HomeComponent {
   loggedIn: boolean = false;
   details: string[] | null = null;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private accountService: AccountService) { }
 
   @HostListener('document:click', ['$event'])
   clickout(event: { target: HTMLElement | null; }) {
@@ -31,7 +31,7 @@ export class HomeComponent {
 
   public login(username: string, password: string): void {
     const user = JSON.stringify({username: username, password: password});
-    this.loginService.login(user).subscribe({
+    this.accountService.login(user).subscribe({
       next: (output: string) => {
         localStorage.setItem('userInfoJwt', output);
         this.loggedIn = true;
@@ -45,7 +45,7 @@ export class HomeComponent {
 
   public getUserDetails(): void {
     const jwt = localStorage.getItem('userInfoJwt');
-    this.loginService.getJwtUserDetails(jwt).subscribe({
+    this.accountService.getJwtUserDetails(jwt).subscribe({
       next: (output: string[] | null) => {
         console.log(output);
         if (output == null) {

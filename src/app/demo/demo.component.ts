@@ -27,15 +27,13 @@ export class DemoComponent {
           console.log(response);
           //set maze values
           this.generatedSteps = response;
-          this.currentStep = 0;
+          this.currentStep = 2;
           this.stepAmount = response.length;
-          //reset timer
-          if (this.demoTimer != null) {
-            clearInterval(this.demoTimer);
+          if (this.demoTimer == null) {
+            this.demoTimer = setInterval(() => {
+              this.incrementStep();
+            }, 1000);
           }
-          this.demoTimer = setInterval(() => {
-            this.incrementStep();
-          }, 1000);
         }, 
         error: (error: HttpErrorResponse) => {
           alert(error.message)
