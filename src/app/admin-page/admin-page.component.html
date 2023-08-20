@@ -1,8 +1,13 @@
-<p>admin-page works!</p>
+<p>Admin Page</p>
 
 <input type='text' placeholder='Enter Username' [(ngModel)]='newUserDetails[0]'>
 <input type='text' placeholder='Enter Password' [(ngModel)]='newUserDetails[1]'>
 <button (click)='addUser(newUserDetails[0], newUserDetails[1])'>add user</button>
+
+<div *ngFor='let line of allUsernames; let i = index'>
+    {{allUsernames[i]}}
+    <button (click)='removeUser(allUsernames[i])'>remove user</button>
+</div>
 
 <nav>
     <a routerLink='/'>Home</a>

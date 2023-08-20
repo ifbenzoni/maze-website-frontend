@@ -8,7 +8,7 @@
         <option value='dfs'>Depth First Search</option>
         <option value='recursive division'>Recursive Division</option>
     </select>
-    <button (click)='setMaze(generationType)'>Generate</button>
+    <button (click)='setMaze(generationType)' [disabled]="generationType ==='empty'">Generate</button>
 </div>
 
 <main class='content'>

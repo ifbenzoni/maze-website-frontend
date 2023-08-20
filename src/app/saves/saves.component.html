@@ -1,4 +1,9 @@
-<p>saves works!</p>
+<p>Saved Mazes</p>
+
+<div *ngFor='let line of allMazes; let i = index'>
+    <app-maze-visual [mazeArray]=allMazes[i] [interactive]=false></app-maze-visual>
+    <button (click)='removeMaze(i)'>remove {{i + 1}}</button>
+</div>
 
 <nav>
     <a routerLink='/'>Home</a>

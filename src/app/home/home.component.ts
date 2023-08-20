@@ -15,8 +15,9 @@ export class HomeComponent {
   inputUsername: string = '';
   inputPassword: string = '';
 
-  loggedIn: boolean = false;
   details: string[] | null = null;
+
+  loginRemaining: number | null = null;
 
   constructor(private accountService: AccountService) { }
 
@@ -29,13 +30,24 @@ export class HomeComponent {
     }
   }
 
+  public ngOnInit(): void {
+    this.getUserDetails();
+    this.getTimeRemaining();
+    let storageDetails: string | null = localStorage.getItem('details');
+    if (storageDetails != null) {
+      this.details = JSON.parse(storageDetails);
+    } else {
+      this.details = storageDetails;
+    }
+  }
+
   public login(username: string, password: string): void {
     const user = JSON.stringify({username: username, password: password});
     this.accountService.login(user).subscribe({
       next: (output: string) => {
         localStorage.setItem('userInfoJwt', output);
-        this.loggedIn = true;
         this.getUserDetails();
+        this.getTimeRemaining();
       },
       error: (error: HttpErrorResponse) => {
         alert(error.message);
@@ -43,19 +55,37 @@ export class HomeComponent {
     })
   }
 
+  public logout(): void {
+    localStorage.removeItem('userInfoJwt');
+    this.getUserDetails();
+    this.getTimeRemaining();
+  }
+
   public getUserDetails(): void {
     const jwt = localStorage.getItem('userInfoJwt');
     this.accountService.getJwtUserDetails(jwt).subscribe({
       next: (output: string[] | null) => {
         console.log(output);
-        if (output == null) {
-          this.loggedIn = false;
-        }
         this.details = output;
         localStorage.setItem('details', JSON.stringify(output));
       },
       error: (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
+        this.details = null;
+      }
+    })
+  }
+
+  public getTimeRemaining(): void {
+    const jwt = localStorage.getItem('userInfoJwt');
+    this.accountService.getTimeRemaining(jwt).subscribe({
+      next: (output: number) => {
+        console.log(output);
+        this.loginRemaining = output;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error.message);
+        this.loginRemaining = null;
       }
     })
   }

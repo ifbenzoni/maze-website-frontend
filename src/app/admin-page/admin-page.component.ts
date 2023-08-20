@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { AccountService } from '../account.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-page',
@@ -9,26 +10,54 @@ import { AccountService } from '../account.service';
 })
 export class AdminPageComponent {
 
-  details: string[] | null = null;
-
   newUserDetails: string[] = [];
+
+  allUsernames: string[] = [];
 
   constructor(private accountService: AccountService) {}
 
   public ngOnInit(): void {
-    let detailsString: string | null = localStorage.getItem('details');
-    if (detailsString != null) {
-      this.details = JSON.parse(detailsString);
-    }
+    this.getUsers();
   }
 
   public addUser(username: string, password: string): void {
     const jwt = localStorage.getItem('userInfoJwt');
-    //finish this and below
-    this.accountService.addUser(jwt, JSON.stringify({username: username, password: password}));
+    const user = JSON.stringify({username: username, password: password, role: "GUEST"});
+    this.accountService.addUser(jwt, user).subscribe({
+      next: (response: boolean) => {
+        console.log(response);
+        this.getUsers();
+      }, 
+      error: (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    });
+  }
+
+  public removeUser(username: string): void {
+    const jwt = localStorage.getItem('userInfoJwt');
+    const user = JSON.stringify({username: username});
+    this.accountService.removeUser(jwt, user).subscribe({
+      next: (response: boolean) => {
+        console.log(response);
+        this.getUsers();
+      }, 
+      error: (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    });
   }
 
   public getUsers(): void {
-
+    const jwt = localStorage.getItem('userInfoJwt');
+    this.accountService.getUsers(jwt).subscribe({
+      next: (response: string[]) => {
+        console.log(response);
+        this.allUsernames = response;
+      }, 
+      error: (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    });
   }
 }

@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { MazeService } from '../maze.service';
 import { firstValueFrom } from 'rxjs';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-solve',
@@ -19,7 +20,7 @@ export class SolveComponent {
 
   public accuracyDisplay: String | null = null;
 
-  constructor(private mazeService: MazeService) { }
+  constructor(private mazeService: MazeService, private accountService: AccountService) { }
 
   public setMaze(type: String, size: number | null): void {
     if (!('empty' === type) && null != size) {
@@ -66,5 +67,18 @@ export class SolveComponent {
       }
     });
   }
+
+  public saveMaze(): void {
+    const jwt = localStorage.getItem('userInfoJwt');
+    this.accountService.saveMazeInfo(jwt, this.generatedMaze).subscribe({
+      next: (response: boolean) => {
+        console.log(response);
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error.message);
+      }
+    })
+  }
+
 
 }

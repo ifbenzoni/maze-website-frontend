@@ -4,6 +4,12 @@
   </button>
 </div>
 
+<div style='display: flex;'>
+  <button style='margin-left: auto;' (click)='logout()'>
+    Log Out
+  </button>
+</div>
+
 <div id='loginForm' class='modal'>
   <form class='modal-content'>
     <label><b>Username</b></label>
@@ -21,14 +27,17 @@
 </div>
 
 <div class='content'>
-  <label *ngIf='loggedIn == false'>
+  <label *ngIf='details == null'>
     logged out
-  </label>
-  <label *ngIf='loggedIn == true'>
-    logged in
   </label>
   <label *ngIf='details != null'>
     username: {{details[0]}}
+  </label>
+</div>
+
+<div class='content'>
+  <label *ngIf='loginRemaining != null'>
+    Login expires in {{loginRemaining}} minutes.
   </label>
 </div>
 
@@ -36,7 +45,7 @@
   <ul>
     <li><a routerLink='/demo'>Demo</a></li>
     <li><a routerLink='/solve'>Solve</a></li>
-    <li><a routerLink='/saves'>Saves</a></li>
+    <li *ngIf="details != null && (details[1] == 'ADMIN' || details[1] == 'GUEST')"><a routerLink='/saves'>Saves</a></li>
     <li *ngIf="details != null && details[1] == 'ADMIN'"><a routerLink='/admin'>Admin Page</a></li>
   </ul>
 </nav>

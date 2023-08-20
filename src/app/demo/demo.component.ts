@@ -27,7 +27,7 @@ export class DemoComponent {
           console.log(response);
           //set maze values
           this.generatedSteps = response;
-          this.currentStep = 2;
+          this.currentStep = 0;
           this.stepAmount = response.length;
           if (this.demoTimer == null) {
             this.demoTimer = setInterval(() => {

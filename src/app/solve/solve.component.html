@@ -9,16 +9,22 @@
         <option value='recursive division'>Recursive Division</option>
     </select>
     <label>Input Size (5 to 20):</label>
-    <input type='number' id='dimensions' placeholder='default' required min='5' max='20'
-    [(ngModel)]='size'>
-    <button (click)='setMaze(generationType, size)'>Generate</button>
+    <input id='dimensions' placeholder='default' type='number' required min='5' required max='20'
+        [(ngModel)]='size' #dimensions='ngModel'>
+    <div *ngIf="dimensions.errors?.['min'] || dimensions.errors?.['max']">
+        Dimensions must be between 5 and 20 (inclusive).
+    </div>
+    <button (click)='setMaze(generationType, size)'
+        [disabled]="dimensions.errors?.['min'] || dimensions.errors?.['max'] ||
+        size == null || generationType === 'empty'">Generate</button>
 </div>
 
 <main class='content'>
-    <app-maze-visual [mazeArray]=generatedMaze [interactive] = true></app-maze-visual>
+    <app-maze-visual [mazeArray]=generatedMaze [interactive]=true></app-maze-visual>
 
     <button (click)='setAccuracy()'>Check</button>
     <h1>{{accuracyDisplay}}</h1>
+    <button (click)='saveMaze()'>Save Maze</button>
 </main>
 
 <nav>
