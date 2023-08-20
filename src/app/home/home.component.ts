@@ -3,6 +3,8 @@ import { Component, HostListener } from '@angular/core';
 import { AccountService } from '../account.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
+const MS_IN_HALF_MIN: number = 30000;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,6 +20,7 @@ export class HomeComponent {
   details: string[] | null = null;
 
   loginRemaining: number | null = null;
+  timeRemainingTimer: NodeJS.Timeout | null = null;
 
   constructor(private accountService: AccountService) { }
 
@@ -33,11 +36,20 @@ export class HomeComponent {
   public ngOnInit(): void {
     this.getUserDetails();
     this.getTimeRemaining();
+    this.timeRemainingTimer = setInterval(() => {
+      this.getTimeRemaining();   
+    }, MS_IN_HALF_MIN);
     let storageDetails: string | null = localStorage.getItem('details');
     if (storageDetails != null) {
       this.details = JSON.parse(storageDetails);
     } else {
       this.details = storageDetails;
+    }
+  }
+
+  public ngOnDestroy(): void {
+    if (this.timeRemainingTimer) {
+      clearInterval(this.timeRemainingTimer);
     }
   }
 

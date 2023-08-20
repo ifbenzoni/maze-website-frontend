@@ -15,10 +15,16 @@ export class DemoComponent {
   public generatedSteps: number[][][] = [];
   public stepAmount: number = 0;
   public currentStep: number = 0;
-  public demoTimer: NodeJS.Timer | null = null;
+  public demoTimer: NodeJS.Timeout | null = null;
   public generationType: String = 'empty';
 
   constructor(private mazeService: MazeService) { }
+
+  public ngOnDestroy(): void {
+    if (this.demoTimer) {
+      clearInterval(this.demoTimer);
+    }
+  }
 
   public setMaze(type: String): void {
     if (!('empty' === this.generationType)) {
