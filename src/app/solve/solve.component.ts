@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { MazeService } from '../maze.service';
@@ -21,6 +21,32 @@ export class SolveComponent {
   public accuracyDisplay: String | null = null;
 
   constructor(private mazeService: MazeService, private accountService: AccountService) { }
+
+  @HostListener('document:keydown.shift', ['$event'])
+  onMouseDown() {
+    localStorage.setItem('shiftPressed', 'pressed');
+  }
+
+  @HostListener('document:keyup.shift', ['$event'])
+  onMouseUp() {
+    localStorage.setItem('shiftPressed', '');
+  }
+
+  @HostListener('document:keydown.d', ['$event'])
+  onDDown() {
+    localStorage.setItem('dPressed', 'pressed');
+  }
+
+  @HostListener('document:keyup.d', ['$event'])
+  onDUp() {
+    localStorage.setItem('dPressed', '');
+  }
+
+  public ngOnDestroy(): void {
+    console.log('here')
+    localStorage.removeItem('shiftPressed');
+    localStorage.removeItem('dPressed');
+  }
 
   public setMaze(type: String, size: number | null): void {
     if (!('empty' === type) && null != size) {

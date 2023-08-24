@@ -1,4 +1,4 @@
-<div style='display: flex;' class='topStyle'>
+<div style='display: flex;'>
   <button style='margin-left: auto;' onclick="document.getElementById('loginForm').style.display='block'">
     Log In
   </button>
@@ -12,17 +12,19 @@
 
 <div id='loginForm' class='modal'>
   <form class='modal-content'>
-    <label><b>Username</b></label>
-    <input type='text' placeholder='Enter Username' [(ngModel)]='inputUsername' [ngModelOptions]='{standalone: true}' required>
-  
-    <label><b>Password</b></label>
-    <input type='password' placeholder='Enter Password' [(ngModel)]='inputPassword' [ngModelOptions]='{standalone: true}' required>
-
-    <button (click)='login(inputUsername, inputPassword)'>Log in</button>
+    <div>
+      <label><b>Username: </b></label>
+      <input type='text' placeholder='Enter Username' [(ngModel)]='inputUsername' [ngModelOptions]='{standalone: true}' required>
+    </div>
+    <div>
+      <label><b>Password: </b></label>
+      <input class='center' type='password' placeholder='Enter Password' [(ngModel)]='inputPassword' [ngModelOptions]='{standalone: true}' required>
+    </div>
+    <button class='center' (click)='login(inputUsername, inputPassword)'>Submit</button>
   </form>
 </div>
 
-<div class='content'>
+<div class='title'>
   <h1>{{ title }}</h1>
 </div>
 
@@ -42,7 +44,7 @@
 </div>
 
 <nav class='content'>
-  <ul>
+  <ul style='list-style-type: none;'>
     <li><a routerLink='/demo'>Demo</a></li>
     <li><a routerLink='/solve'>Solve</a></li>
     <li *ngIf="details != null && (details[1] == 'ADMIN' || details[1] == 'GUEST')"><a routerLink='/saves'>Saves</a></li>

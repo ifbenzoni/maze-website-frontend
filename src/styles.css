@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+html { background-color: black; }
+
+/* unvisited link */
+a:link {
+  color: #095484;
+}
+/* visited link */
+a:visited {
+  color: #095484;
+}
+/* mouse over link */
+a:hover {
+  color: #8ebf42;
+}
+/* selected link */
+a:active {
+  color: #800000;
+}

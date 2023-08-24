@@ -1,4 +1,4 @@
-<div class='content'>
+<div class='title'>
     <h1>{{ title }}</h1>
 </div>
 
@@ -14,6 +14,14 @@
 <main class='content'>
     <app-maze-visual [mazeArray]=generatedSteps[currentStep] [interactive] = false></app-maze-visual>
 </main>
+
+<div class='content'>
+    Info:
+    <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm">maze generation wiki</a>
+    Maze generation uses recursive division and recursive dfs backtracking.
+    <br>
+    Maze solution checker uses dfs backtracking with stack.
+</div>
 
 <nav>
     <a routerLink='/'>Home</a>

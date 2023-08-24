@@ -1,6 +1,6 @@
-<p>Saved Mazes</p>
+<h1 class='title'>Saved Mazes</h1>
 
-<div *ngFor='let line of allMazes; let i = index'>
+<div *ngFor='let line of allMazes; let i = index' class = content>
     <app-maze-visual [mazeArray]=allMazes[i] [interactive]=false></app-maze-visual>
     <button (click)='removeMaze(i)'>remove {{i + 1}}</button>
 </div>

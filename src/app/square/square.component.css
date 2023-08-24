@@ -19,13 +19,13 @@
 .selected-square {
     height: 30px;
     width: 30px;
-    background-color: green;
+    background-color: #0090FF;
 }
 
 .end-square {
     height: 30px;
     width: 30px;
-    background-color: green;
+    background-color: #0090FF;
 }
 
 .end-circle {

@@ -12,7 +12,7 @@ const MS_IN_HALF_MIN: number = 30000;
 })
 export class HomeComponent {
 
-  title = 'Maze Wesite Homepage';
+  title = 'aMAZEing website';
 
   inputUsername: string = '';
   inputPassword: string = '';
@@ -84,6 +84,10 @@ export class HomeComponent {
       error: (error: HttpErrorResponse) => {
         console.log(error.message);
         this.details = null;
+        //if user details not able to be retrieved it's likely login time should be null
+        if (this.loginRemaining != null) {
+          this.getTimeRemaining();
+        }
       }
     })
   }
@@ -98,6 +102,10 @@ export class HomeComponent {
       error: (error: HttpErrorResponse) => {
         console.log(error.message);
         this.loginRemaining = null;
+        //if login time not able to be retrieved it's likely user details should be null
+        if (this.details != null) {
+          this.getUserDetails();
+        }
       }
     })
   }

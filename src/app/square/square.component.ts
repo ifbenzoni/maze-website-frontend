@@ -8,10 +8,12 @@ import { Component, Input } from '@angular/core';
       <p class = 'wall-square' *ngIf='type == 1'></p>
       <p class = 'empty-square' *ngIf='type == 0 && interactive == false'></p>
       <p *ngIf='type == 0 && interactive == true'>
-        <button class = 'empty-square' (click)='toggleSelect()'></button>
+        <button class = 'empty-square' (click)='toggleSelect()' (mousemove)='shiftSelect()'
+          (mousemove)='dRemove()'></button>
       </p>
       <p *ngIf='type == 3 && interactive == true'>
-        <button class = 'selected-square' (click)='toggleSelect()'></button>
+        <button class = 'selected-square' (click)='toggleSelect()' (mousemove)='shiftSelect()'
+          (mousemove)='dRemove()'></button>
       </p>
       <div class = 'end-square' *ngIf='type == 4'>
         <p class = 'end-circle'><p>
@@ -32,6 +34,18 @@ export class SquareComponent {
     if (this.type == 0) {
       this.maze[this.x][this.y] = 3;
     } else {
+      this.maze[this.x][this.y] = 0;
+    }
+  }
+
+  public shiftSelect(): void {
+    if (localStorage.getItem('shiftPressed') === 'pressed') {
+      this.maze[this.x][this.y] = 3;
+    }
+  }
+
+  public dRemove(): void {
+    if (localStorage.getItem('dPressed') === 'pressed') {
       this.maze[this.x][this.y] = 0;
     }
   }
