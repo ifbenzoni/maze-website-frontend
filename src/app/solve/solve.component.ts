@@ -43,7 +43,6 @@ export class SolveComponent {
   }
 
   public ngOnDestroy(): void {
-    console.log('here')
     localStorage.removeItem('shiftPressed');
     localStorage.removeItem('dPressed');
   }
