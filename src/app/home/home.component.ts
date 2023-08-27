@@ -51,6 +51,7 @@ export class HomeComponent {
     if (this.timeRemainingTimer) {
       clearInterval(this.timeRemainingTimer);
     }
+    localStorage.removeItem('details');
   }
 
   public login(username: string, password: string): void {
@@ -69,6 +70,7 @@ export class HomeComponent {
 
   public logout(): void {
     localStorage.removeItem('userInfoJwt');
+    localStorage.removeItem('details');
     this.getUserDetails();
     this.getTimeRemaining();
   }
