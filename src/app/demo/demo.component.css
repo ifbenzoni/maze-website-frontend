@@ -16,6 +16,11 @@ h6 {
     margin: 8px 0;
 }
 
+@font-face {
+    font-family: 'RussoOne';
+    src: url('src/assets/RussoOne-Regular.ttf');
+}
+
 .title {
     font-family: 'RussoOne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     display: flex;
