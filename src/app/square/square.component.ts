@@ -15,6 +15,7 @@ import { Component, Input } from '@angular/core';
         <button class = 'selected-square' (click)='toggleSelect()' (mousemove)='shiftSelect()'
           (mousemove)='dRemove()'></button>
       </p>
+      <p class = 'selected-square' *ngIf='type == 3 && interactive == false'></p>
       <div class = 'end-square' *ngIf='type == 4'>
         <p class = 'end-circle'><p>
       <div>

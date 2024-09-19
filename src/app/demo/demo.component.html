@@ -7,6 +7,7 @@
     <select name='generation methods' id='generation methods' [(ngModel)]='generationType'>
         <option value='dfs'>Depth First Search</option>
         <option value='recursive division'>Recursive Division</option>
+        <option value='ca'>Cellular Automata</option>
     </select>
     <button (click)='setMaze(generationType)' [disabled]="generationType ==='empty'">Generate</button>
 </div>
@@ -15,13 +16,17 @@
     <app-maze-visual [mazeArray]=generatedSteps[currentStep] [interactive] = false></app-maze-visual>
 </main>
 
-<div class='content'>
+<pre class='content'>
     Info:
     <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm">maze generation wiki</a>
-    Maze generation uses recursive division and recursive dfs backtracking.
+    Maze generation Types:
     <br>
-    Maze solution checker uses dfs backtracking with stack.
-</div>
+    <li> recursive division </li>
+    <li> recursive dfs backtracking  </li>
+    <li> cellular automata with rulestring b3s12345 - ensures solvable after generation </li>
+    <br>
+    *Maze solution checker uses dfs backtracking with stack.
+</pre>
 
 <nav>
     <a routerLink='/'>Home</a>

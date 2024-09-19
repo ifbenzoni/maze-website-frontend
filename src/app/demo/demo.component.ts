@@ -51,7 +51,7 @@ export class DemoComponent {
   }
 
   public incrementStep() {
-    if (this.currentStep < this.stepAmount) {
+    if (this.currentStep < this.stepAmount - 1) {
       this.currentStep++;
     } else {
       this.currentStep = 0;
