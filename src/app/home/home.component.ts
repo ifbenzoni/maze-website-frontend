@@ -68,9 +68,16 @@ export class HomeComponent {
   }
 
   public logout(): void {
-    localStorage.removeItem('details');
-    this.getUserDetails();
-    this.getTimeRemaining();
+    this.accountService.logout().subscribe({
+      next: (output: string) => {
+        console.group(output);
+        this.getUserDetails();
+        this.getTimeRemaining();
+      },
+      error: (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    })
   }
 
   public getUserDetails(): void {
