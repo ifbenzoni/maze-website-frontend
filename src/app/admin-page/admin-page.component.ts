@@ -21,9 +21,8 @@ export class AdminPageComponent {
   }
 
   public addUser(username: string, password: string): void {
-    const jwt = localStorage.getItem('userInfoJwt');
     const user = JSON.stringify({username: username, password: password, role: "GUEST"});
-    this.accountService.addUser(jwt, user).subscribe({
+    this.accountService.addUser(user).subscribe({
       next: (response: boolean) => {
         console.log(response);
         this.getUsers();
@@ -35,9 +34,8 @@ export class AdminPageComponent {
   }
 
   public removeUser(username: string): void {
-    const jwt = localStorage.getItem('userInfoJwt');
     const user = JSON.stringify({username: username});
-    this.accountService.removeUser(jwt, user).subscribe({
+    this.accountService.removeUser(user).subscribe({
       next: (response: boolean) => {
         console.log(response);
         this.getUsers();
@@ -49,8 +47,7 @@ export class AdminPageComponent {
   }
 
   public getUsers(): void {
-    const jwt = localStorage.getItem('userInfoJwt');
-    this.accountService.getUsers(jwt).subscribe({
+    this.accountService.getUsers().subscribe({
       next: (response: string[]) => {
         console.log(response);
         this.allUsernames = response;

@@ -1,5 +1,4 @@
 import { Component, HostListener } from '@angular/core';
-
 import { AccountService } from '../account.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -58,7 +57,7 @@ export class HomeComponent {
     const user = JSON.stringify({username: username, password: password});
     this.accountService.login(user).subscribe({
       next: (output: string) => {
-        localStorage.setItem('userInfoJwt', output);
+        console.group(output);
         this.getUserDetails();
         this.getTimeRemaining();
       },
@@ -69,15 +68,13 @@ export class HomeComponent {
   }
 
   public logout(): void {
-    localStorage.removeItem('userInfoJwt');
     localStorage.removeItem('details');
     this.getUserDetails();
     this.getTimeRemaining();
   }
 
   public getUserDetails(): void {
-    const jwt = localStorage.getItem('userInfoJwt');
-    this.accountService.getJwtUserDetails(jwt).subscribe({
+    this.accountService.getJwtUserDetails().subscribe({
       next: (output: string[] | null) => {
         console.log(output);
         this.details = output;
@@ -95,8 +92,7 @@ export class HomeComponent {
   }
 
   public getTimeRemaining(): void {
-    const jwt = localStorage.getItem('userInfoJwt');
-    this.accountService.getTimeRemaining(jwt).subscribe({
+    this.accountService.getTimeRemaining().subscribe({
       next: (output: number) => {
         console.log(output);
         this.loginRemaining = output;

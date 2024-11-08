@@ -94,8 +94,7 @@ export class SolveComponent {
   }
 
   public saveMaze(): void {
-    const jwt = localStorage.getItem('userInfoJwt');
-    this.accountService.saveMazeInfo(jwt, this.generatedMaze).subscribe({
+    this.accountService.saveMazeInfo(this.generatedMaze).subscribe({
       next: (response: boolean) => {
         console.log(response);
       },

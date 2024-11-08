@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'solve', component: SolveComponent },
   { path: 'saves', component: SavesComponent },
   { path: 'admin', component: AdminPageComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/demo', pathMatch: 'full' }
 ]
 
 @NgModule({

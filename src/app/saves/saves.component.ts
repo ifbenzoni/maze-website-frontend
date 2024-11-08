@@ -18,8 +18,7 @@ export class SavesComponent {
   }
 
   public getMazes(): void {
-    const jwt = localStorage.getItem('userInfoJwt');
-    this.accountService.getMazeInfo(jwt).subscribe({
+    this.accountService.getMazeInfo().subscribe({
       next: (output: number[][][]) => {
         console.log(output);
         this.allMazes = output;
@@ -31,8 +30,7 @@ export class SavesComponent {
   }
 
   public removeMaze(index: number): void {
-    const jwt = localStorage.getItem('userInfoJwt');
-    this.accountService.removeMazeInfo(jwt, index).subscribe({
+    this.accountService.removeMazeInfo(index).subscribe({
       next: (output: boolean) => {
         console.log(output);
         this.getMazes();
