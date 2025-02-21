@@ -43,11 +43,12 @@
   </label>
 </div>
 
-<nav class='content'>
-  <ul style='list-style-type: none;'>
+<nav class='link-format'>
+  <h2 style='text-decoration: none; color: white; font-size: 18px;'>Pages:</h2>
+  <ul style='list-style-type: none; margin-right: 30px;'>
     <li><a routerLink='/demo'>Demo</a></li>
     <li><a routerLink='/solve'>Solve</a></li>
     <li *ngIf="details != null && (details[1] == 'ADMIN' || details[1] == 'GUEST')"><a routerLink='/saves'>Saves</a></li>
-    <li *ngIf="details != null && details[1] == 'ADMIN'"><a routerLink='/admin'>Admin Page</a></li>
+    <li *ngIf="details != null && details[1] == 'ADMIN'"><a routerLink='/admin'>Admin</a></li>
   </ul>
 </nav>

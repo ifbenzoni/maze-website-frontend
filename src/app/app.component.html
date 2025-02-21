@@ -1,1 +1,7 @@
+<header *ngIf="currentRoute !== '/home'">
+    <div class='universal-header-format'>
+        <a routerLink='/home' style='text-decoration: none; color: white'>Home</a>
+    </div>
+</header>
+
 <router-outlet></router-outlet>
