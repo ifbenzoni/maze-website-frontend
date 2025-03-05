@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'RussoOne';
+    src: url('src/assets/RussoOne-Regular.ttf');
+}
+
+.policy-format {
+    font-family: 'RussoOne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    margin: 20px auto 0px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: left;
+    color: lightblue;
+    font-size: 14px;
+    position: relative;
+}

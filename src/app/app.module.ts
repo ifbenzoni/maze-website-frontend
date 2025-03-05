@@ -13,6 +13,7 @@ import { DemoComponent } from './demo/demo.component';
 import { SolveComponent } from './solve/solve.component';
 import { SavesComponent } from './saves/saves.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { PolicyPageComponent } from './policy-page/policy-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'solve', component: SolveComponent },
   { path: 'saves', component: SavesComponent },
   { path: 'admin', component: AdminPageComponent },
+  { path: 'privacy', component: PolicyPageComponent },
   { path: '', redirectTo: '/demo', pathMatch: 'full' }
 ]
 
@@ -30,8 +32,10 @@ const routes: Routes = [
     SquareComponent,
     MazeVisualComponent,
     DemoComponent,
-    SolveComponent
-  , SavesComponent, AdminPageComponent],
+    SolveComponent, 
+    SavesComponent,
+    AdminPageComponent, 
+    PolicyPageComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
