@@ -86,12 +86,12 @@ h6 {
 }
 
 .slide-in {
-    animation: slideIn 0.8s ease-out forwards;
+    animation: slideIn 1s ease-out forwards;
 }
 
 @keyframes slideIn {
     from {
-        transform: translateY(-20px);
+        transform: translateY(-25px);
         opacity: 0;
     }
     to {
