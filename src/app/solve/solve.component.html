@@ -1,12 +1,16 @@
-<div class='title'>
+<div class='title' style='margin-top: 25px;'>
     <h1>{{ title }}</h1>
+</div>
+
+<div style='margin-top: -40px; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center;'>
+    (Description at bottom.)
 </div>
 
 <div class = 'RussoFont' style='margin-top: -20px; margin-bottom: -20px;'>
     <h1>{{completionDisplay}}</h1>
 </div>
 
-<main class='content'>
+<main class='content' style='margin-top: 25px;'>
     <app-maze-visual [mazeArray]=generatedMaze [interactive]=true [turtlePos]=turtlePos [turtleAngle]=turtleAngle
     (turtleAngleChange)="updateTurtleAngle($event)" (changeCompletion)="setCompletion()"></app-maze-visual>
     <img [ngStyle]="{position: 'relative', 
@@ -42,5 +46,7 @@
     <li>The maze is marked as completed when you reach the green square.</li>
     <li>Move the turtle by pressing the red indicators.</li>
     <li>Visited areas will turn blue.</li>
+    <li>Generation type and size are available to set.</li>
+    <li>Guest login to save mazes.</li>
     <li>Maze solution checker uses dfs backtracking with stack.</li>
 </div>
