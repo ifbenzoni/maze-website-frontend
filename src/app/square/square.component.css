@@ -4,6 +4,12 @@
     background-color: #ffffff;
 }
 
+.empty-square-option {
+    height: 30px;
+    width: 30px;
+    background-color: #f84d4d;
+}
+
 .wall-square {
     height: 30px;
     width: 30px;
@@ -22,15 +28,14 @@
     background-color: #0090FF;
 }
 
+.selected-square-option {
+    height: 30px;
+    width: 30px;
+    background-color: #f84d4d;
+}
+
 .end-square {
     height: 30px;
     width: 30px;
-    background-color: #0090FF;
-}
-
-.end-circle {
-    height: 30px;
-    width: 30px;
-    background-color: black;
-    clip-path: circle(20%);
+    background-color: lightgreen;
 }

@@ -58,4 +58,10 @@ export class DemoComponent {
     }
   }
 
+  ngOnInit() {
+    this.generationType = 'dfs';
+    this.setMaze('dfs');
+    this.generationType = 'empty';
+  }
+
 }

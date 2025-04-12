@@ -1,13 +1,15 @@
-<div style='display: flex;'>
-  <button style='margin-left: auto;' onclick="document.getElementById('loginForm').style.display='block'">
+<div style="display: flex;" class="login-format">
+  <span style="margin-left: auto; cursor: pointer; text-decoration: underline;"
+        onclick="document.getElementById('loginForm').style.display='block'">
     Log In
-  </button>
+  </span>
 </div>
 
-<div style='display: flex;'>
-  <button style='margin-left: auto;' (click)='logout()'>
+<div style="display: flex;" class="login-format">
+  <span style="margin-left: auto; cursor: pointer; text-decoration: underline;"
+        (click)="logout()">
     Log Out
-  </button>
+  </span>
 </div>
 
 <div id='loginForm' class='modal'>
@@ -24,11 +26,13 @@
   </form>
 </div>
 
-<div class='title'>
-  <h1>{{ title }}</h1>
+<div class='title' style='margin-top: 10px; margin-bottom: -40px;'>
+  <h1 class='slide-in'>{{ title }}</h1>
 </div>
 
-<div class='content'>
+<app-demo></app-demo>
+
+<div class='content' style='margin-top: -20px;'>
   <label *ngIf='details == null'>
     logged out
   </label>
@@ -37,17 +41,16 @@
   </label>
 </div>
 
-<div class='content'>
+<div class='content' style='margin-top: -20px;'>
   <label *ngIf='loginRemaining != null'>
     Login expires in {{loginRemaining}} minutes.
   </label>
 </div>
 
-<nav class='link-format'>
+<nav class='link-format'  style='margin-top: -10px;'>
   <h2 style='text-decoration: none; color: white; font-size: 18px;'>Pages:</h2>
   <ul style='list-style-type: none; margin-right: 30px;'>
-    <li><a routerLink='/demo'>Demo</a></li>
-    <li><a routerLink='/solve'>Solve</a></li>
+    <li><a routerLink='/game'>Mini-game</a></li>
     <li *ngIf="details != null && (details[1] == 'ADMIN' || details[1] == 'GUEST')"><a routerLink='/saves'>Saves</a></li>
     <li *ngIf="details != null && details[1] == 'ADMIN'"><a routerLink='/admin'>Admin</a></li>
   </ul>

@@ -12,40 +12,17 @@ import { AccountService } from '../account.service';
 })
 export class SolveComponent {
 
-  title = 'Solve Page';
+  title = 'Turtle Mini-game';
 
   public generatedMaze: number[][] = [];
   public generationType: String = 'empty';
   public size: number | null = null;
+  public turtlePos: number[] = [];
+  public turtleAngle = 0;
 
-  public accuracyDisplay: String | null = null;
+  public completionDisplay: String | null = null;
 
   constructor(private mazeService: MazeService, private accountService: AccountService) { }
-
-  @HostListener('document:keydown.shift', ['$event'])
-  onMouseDown() {
-    localStorage.setItem('shiftPressed', 'pressed');
-  }
-
-  @HostListener('document:keyup.shift', ['$event'])
-  onMouseUp() {
-    localStorage.setItem('shiftPressed', '');
-  }
-
-  @HostListener('document:keydown.d', ['$event'])
-  onDDown() {
-    localStorage.setItem('dPressed', 'pressed');
-  }
-
-  @HostListener('document:keyup.d', ['$event'])
-  onDUp() {
-    localStorage.setItem('dPressed', '');
-  }
-
-  public ngOnDestroy(): void {
-    localStorage.removeItem('shiftPressed');
-    localStorage.removeItem('dPressed');
-  }
 
   public setMaze(type: String, size: number | null): void {
     if (!('empty' === type) && null != size) {
@@ -71,7 +48,15 @@ export class SolveComponent {
     } else {
       alert('Generation type is empty.')
     }
-    this.accuracyDisplay = null;
+    this.completionDisplay = null;
+    if (size != null) {
+      this.turtlePos[0] = size - 1;
+      this.turtlePos[1] = size - 1;
+    } else {
+      this.turtlePos[0] = 9 - 1;
+      this.turtlePos[1] = 9 - 1;
+    }
+    this.turtleAngle = 0;
   }
 
   public async checkMaze(maze: number[][]): Promise<boolean> {
@@ -80,15 +65,15 @@ export class SolveComponent {
     return output;
   }
 
-  public setAccuracy(): void {
-    let accuracy: boolean | null = null;
+  public setCompletion(): void {
+    let completion: boolean | null = null;
     this.checkMaze(this.generatedMaze).then((value:boolean) => {
       console.log(value);
-      accuracy = value;
-      if (accuracy == true) {
-        this.accuracyDisplay = 'Correct';
+      completion = value;
+      if (completion == true) {
+        this.completionDisplay = 'Complete!';
       } else {
-        this.accuracyDisplay = 'Incorrect';
+        this.completionDisplay = 'Incomplete';
       }
     });
   }
@@ -104,5 +89,12 @@ export class SolveComponent {
     })
   }
 
+  updateTurtleAngle(newAngle: number) {
+    this.turtleAngle = newAngle;
+  }
+
+  ngOnInit() {
+    this.setMaze('dfs', 9);
+  }
 
 }

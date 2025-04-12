@@ -2,7 +2,22 @@
     <h1>{{ title }}</h1>
 </div>
 
-<div class='content'>
+<div class = 'RussoFont' style='margin-top: -20px; margin-bottom: -20px;'>
+    <h1>{{completionDisplay}}</h1>
+</div>
+
+<main class='content'>
+    <app-maze-visual [mazeArray]=generatedMaze [interactive]=true [turtlePos]=turtlePos [turtleAngle]=turtleAngle
+    (turtleAngleChange)="updateTurtleAngle($event)" (changeCompletion)="setCompletion()"></app-maze-visual>
+    <img [ngStyle]="{position: 'relative', 
+    left: (turtlePos[0] * 30 - 120) + 'px', top: (turtlePos[1] * 30 - 271) + 'px',
+    transform: 'rotate(' + turtleAngle + 'deg)'}" src="assets/30x30-pixel-turtle.png"/>
+
+    <button (click)='setCompletion()'>Check</button>
+    <button (click)='saveMaze()'>Save Maze</button>
+</main>
+
+<div class='content' style='margin-top: -10px;'>
     <label>Select Generation Type:</label>
     <select name='generation methods' id='generation methods' [(ngModel)]='generationType'>
         <option value='dfs'>Depth First Search</option>
@@ -20,20 +35,12 @@
         generationType === 'empty'">Generate</button>
 </div>
 
-<div class = 'RussoFont'>
-    <h1>{{accuracyDisplay}}</h1>
-</div>
-
-<main class='content'>
-    <app-maze-visual [mazeArray]=generatedMaze [interactive]=true></app-maze-visual>
-
-    <button (click)='setAccuracy()'>Check</button>
-    <button (click)='saveMaze()'>Save Maze</button>
-</main>
-
 <div class='info'>
-    Info:
+    Description:
 </div>
 <div class='info'>
-    Hold shift to select multiple spaces. Hold d to clear multiple spaces.
+    <li>The maze is marked as completed when you reach the green square.</li>
+    <li>Move the turtle by pressing the red indicators.</li>
+    <li>Visited areas will turn blue.</li>
+    <li>Maze solution checker uses dfs backtracking with stack.</li>
 </div>

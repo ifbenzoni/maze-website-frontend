@@ -17,12 +17,11 @@ import { PolicyPageComponent } from './policy-page/policy-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'demo', component: DemoComponent },
-  { path: 'solve', component: SolveComponent },
+  { path: 'game', component: SolveComponent },
   { path: 'saves', component: SavesComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'privacy', component: PolicyPageComponent },
-  { path: '', redirectTo: '/demo', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ]
 
 @NgModule({

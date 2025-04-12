@@ -77,3 +77,25 @@ h6 {
     color: #ffffff;
     font-size: 16px;
 }
+
+.login-format {
+    font-family: 'RussoOne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    display: flex;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.slide-in {
+    animation: slideIn 0.8s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
