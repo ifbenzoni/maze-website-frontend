@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'game', component: SolveComponent },
   { path: 'saves', component: SavesComponent },
   { path: 'admin', component: AdminPageComponent },
-  { path: 'privacy', component: PolicyPageComponent },
+  { path: 'info', component: PolicyPageComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ]
 
