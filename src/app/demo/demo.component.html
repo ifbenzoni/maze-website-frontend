@@ -8,6 +8,10 @@
     <button (click)='setMaze(generationType)' [disabled]="generationType ==='empty'">Generate</button>
 </div>
 
+<div class='element' *ngIf="generatedSteps.length === 0" style='margin-top: 20px; margin-bottom: -30px;'>
+    <Label>Loading...</Label>
+</div>
+
 <main class='content' style='margin-top: 40px;'>
     <app-maze-visual [mazeArray]=generatedSteps[currentStep] [interactive] = false></app-maze-visual>
 </main>
